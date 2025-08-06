@@ -37,8 +37,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9EaWFsb2dzL1Byb2R1Y3REaWFsb2cucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/workspace/src/CoffeeShop.Server/Components/Pages/Account/AccessDenied.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9BY2NvdW50L0FjY2Vzc0RlbmllZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/workspace/src/CoffeeShop.Server/Components/Pages/Account/Login.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9BY2NvdW50L0xvZ2luLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspace/src/CoffeeShop.Server/Components/Pages/Account/Logout.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9BY2NvdW50L0xvZ291dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspace/src/CoffeeShop.Server/Components/Pages/Admin/DatabaseManagement.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9BZG1pbi9EYXRhYmFzZU1hbmFnZW1lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/workspace/src/CoffeeShop.Server/Components/Pages/Counter.razor]
@@ -51,6 +63,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/workspace/src/CoffeeShop.Server/Components/Pages/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Ib21lLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspace/src/CoffeeShop.Server/Components/Pages/Orders.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9PcmRlcnMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/workspace/src/CoffeeShop.Server/Components/Pages/Products.razor]

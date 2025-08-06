@@ -1,0 +1,48 @@
+@page "/Account/AccessDenied"
+
+<PageTitle>Access Denied - Coffee Shop</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Medium" Class="mt-8">
+    <MudPaper Class="pa-8" Elevation="2">
+        <MudStack AlignItems="AlignItems.Center" Spacing="4">
+            <MudIcon Icon="Icons.Material.Filled.Lock" Size="Size.Large" Color="Color.Warning" />
+            
+            <MudText Typo="Typo.h4" Color="Color.Warning" Align="Align.Center">
+                Access Denied
+            </MudText>
+            
+            <MudText Typo="Typo.body1" Align="Align.Center">
+                You don't have permission to access this resource.
+            </MudText>
+            
+            <MudText Typo="Typo.body2" Align="Align.Center" Class="mud-text-secondary">
+                If you believe this is an error, please contact your administrator.
+            </MudText>
+
+            <MudStack Row Justify="Justify.Center" Class="mt-4">
+                <MudButton Variant="Variant.Filled" 
+                          Color="Color.Primary" 
+                          StartIcon="Icons.Material.Filled.Home"
+                          Href="/">
+                    Go Home
+                </MudButton>
+                
+                <MudButton Variant="Variant.Outlined" 
+                          Color="Color.Secondary" 
+                          StartIcon="Icons.Material.Filled.ArrowBack"
+                          OnClick="GoBack">
+                    Go Back
+                </MudButton>
+            </MudStack>
+        </MudStack>
+    </MudPaper>
+</MudContainer>
+
+@code {
+    [Inject] private NavigationManager Navigation { get; set; } = null!;
+
+    private void GoBack()
+    {
+        Navigation.NavigateTo("/");
+    }
+}

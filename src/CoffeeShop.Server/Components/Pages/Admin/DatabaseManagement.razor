@@ -4,6 +4,7 @@
 @attribute [Authorize(Roles = "Admin")]
 @inject IDatabaseUpdateService DatabaseUpdateService
 @inject ISnackbar Snackbar
+@inject IDialogService DialogService
 
 <PageTitle>Database Management - Coffee Shop</PageTitle>
 
@@ -28,10 +29,10 @@
                 @if (pendingMigrations.Any())
                 {
                     <MudText Typo="Typo.h6">Pending Migrations:</MudText>
-                    <MudList Dense="true">
+                    <MudList T="string" Dense="true">
                         @foreach (var migration in pendingMigrations)
                         {
-                            <MudListItem>
+                            <MudListItem T="string">
                                 <MudText Typo="Typo.body2">• @migration</MudText>
                             </MudListItem>
                         }
@@ -125,45 +126,49 @@
             <MudText Typo="Typo.body2" Class="mb-2">
                 To manually update the database when you make model changes:
             </MudText>
-            <MudCode Language="bash">
-# 1. Stop the application<br/>
-# 2. Delete the database file (SQLite)<br/>
-rm CoffeeShop.db<br/><br/>
-# 3. Restart the application<br/>
-dotnet run<br/><br/>
-# The app will automatically recreate the database with new schema
-            </MudCode>
+            <MudPaper Class="pa-2" Style="background-color: #f5f5f5; font-family: monospace;">
+                <MudText Typo="Typo.body2">
+                    # 1. Stop the application<br/>
+                    # 2. Delete the database file (SQLite)<br/>
+                    rm CoffeeShop.db<br/><br/>
+                    # 3. Restart the application<br/>
+                    dotnet run<br/><br/>
+                    # The app will automatically recreate the database with new schema
+                </MudText>
+            </MudPaper>
         </MudExpansionPanel>
         
         <MudExpansionPanel Text="Using Code-First Migrations">
             <MudText Typo="Typo.body2" Class="mb-2">
                 For production environments, use proper migrations:
             </MudText>
-            <MudCode Language="bash">
-# 1. Install EF Core Tools<br/>
-dotnet tool install --global dotnet-ef<br/><br/>
-# 2. Add migration for your changes<br/>
-dotnet ef migrations add YourMigrationName<br/><br/>
-# 3. Update database<br/>
-dotnet ef database update
-            </MudCode>
+            <MudPaper Class="pa-2" Style="background-color: #f5f5f5; font-family: monospace;">
+                <MudText Typo="Typo.body2">
+                    # 1. Install EF Core Tools<br/>
+                    dotnet tool install --global dotnet-ef<br/><br/>
+                    # 2. Add migration for your changes<br/>
+                    dotnet ef migrations add YourMigrationName<br/><br/>
+                    # 3. Update database<br/>
+                    dotnet ef database update
+                </MudText>
+            </MudPaper>
         </MudExpansionPanel>
         
         <MudExpansionPanel Text="Adding New Properties to Models">
             <MudText Typo="Typo.body2" Class="mb-2">
                 When you add new properties to existing models:
             </MudText>
-            <MudList Dense="true">
-                <MudListItem>
+            <MudList T="string" Dense="true">
+                <MudListItem T="string">
                     <MudText>1. Add the property to your model class</MudText>
                 </MudListItem>
-                <MudListItem>
+                <MudListItem T="string">
                     <MudText>2. Add appropriate data annotations if needed</MudText>
                 </MudListItem>
-                <MudListItem>
+                <MudListItem T="string">
                     <MudText>3. Update the ApplicationDbContext configuration if required</MudText>
                 </MudListItem>
-                <MudListItem>
+                <MudListItem T="string">
                     <MudText>4. Use "Force Recreate Database" button above (development only)</MudText>
                 </MudListItem>
             </MudList>
@@ -236,17 +241,12 @@ dotnet ef database update
 
     private async Task ForceUpdateSchema()
     {
-        var confirmed = await Snackbar.Add(
+        bool? confirmed = await DialogService.ShowMessageBox(
+            "Confirm Force Update",
             "Are you sure? This will delete ALL existing data and recreate the database!",
-            Severity.Warning,
-            configure: config =>
-            {
-                config.Action = "Confirm";
-                config.ActionColor = Color.Error;
-                config.RequireInteraction = true;
-            }).Result;
+            yesText: "Delete", cancelText: "Cancel");
 
-        if (confirmed)
+        if (confirmed == true)
         {
             isForceUpdating = true;
             try

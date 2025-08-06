@@ -1,6 +1,36 @@
-﻿<Router AppAssembly="typeof(Program).Assembly">
+<Router AppAssembly="typeof(Program).Assembly">
     <Found Context="routeData">
-        <RouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)" />
-        <FocusOnNavigate RouteData="routeData" Selector="h1" />
+        <AuthorizeView>
+            <Authorized>
+                <RouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)" />
+                <FocusOnNavigate RouteData="routeData" Selector="h1" />
+            </Authorized>
+            <NotAuthorized>
+                <RouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)" />
+                <FocusOnNavigate RouteData="routeData" Selector="h1" />
+            </NotAuthorized>
+        </AuthorizeView>
     </Found>
+    <NotFound>
+        <PageTitle>Not found</PageTitle>
+        <LayoutView Layout="typeof(Layout.MainLayout)">
+            <MudContainer MaxWidth="MaxWidth.Medium" Class="mt-8">
+                <MudPaper Class="pa-8" Elevation="2">
+                    <MudStack AlignItems="AlignItems.Center" Spacing="4">
+                        <MudIcon Icon="Icons.Material.Filled.SearchOff" Size="Size.Large" Color="Color.Default" />
+                        <MudText Typo="Typo.h4" Align="Align.Center">Page Not Found</MudText>
+                        <MudText Typo="Typo.body1" Align="Align.Center">
+                            Sorry, there's nothing at this address.
+                        </MudText>
+                        <MudButton Variant="Variant.Filled" 
+                                  Color="Color.Primary" 
+                                  StartIcon="Icons.Material.Filled.Home"
+                                  Href="/">
+                            Go Home
+                        </MudButton>
+                    </MudStack>
+                </MudPaper>
+            </MudContainer>
+        </LayoutView>
+    </NotFound>
 </Router>

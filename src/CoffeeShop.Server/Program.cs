@@ -12,6 +12,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+// Add authentication and authorization services
+builder.Services.AddCascadingAuthenticationState();
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorization();
+
 // Add Entity Framework
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
