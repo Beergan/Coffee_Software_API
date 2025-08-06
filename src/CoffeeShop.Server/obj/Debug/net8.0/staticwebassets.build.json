@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "QGFBwrRe6K7g7chM8XIvg/oaFpBk97c5xI+9723d9ks=",
+  "Hash": "r6mMVFtXJ21EXhXaxjUaWeYBoAt5y0kfa+h5dz5NhmU=",
   "Source": "CoffeeShop.Server",
   "BasePath": "_content/CoffeeShop.Server",
   "Mode": "Default",
@@ -8,19 +8,145 @@
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [
     {
-      "Name": "CoffeeShop.Server/wwwroot",
+      "Name": "CoffeeShop.Server\\wwwroot",
       "Source": "CoffeeShop.Server",
-      "ContentRoot": "/workspace/src/CoffeeShop.Server/wwwroot/",
+      "ContentRoot": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\wwwroot\\",
       "BasePath": "_content/CoffeeShop.Server",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "/home/ubuntu/.nuget/packages/mudblazor/8.11.0/staticwebassets/MudBlazor.min.css",
+      "Identity": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\CoffeeShop.Server.styles.css",
+      "SourceId": "CoffeeShop.Server",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "BasePath": "_content/CoffeeShop.Server",
+      "RelativePath": "CoffeeShop.Server#[.{fingerprint}]?.styles.css",
+      "AssetKind": "All",
+      "AssetMode": "CurrentProject",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ApplicationBundle",
+      "Fingerprint": "sjoc3d2190",
+      "Integrity": "SJ7ltgM+BX1x/yKqoDHeCXwoRNloZZDDUMjxmm8HhbU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\CoffeeShop.Server.styles.css"
+    },
+    {
+      "Identity": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\CoffeeShop.Server.bundle.scp.css",
+      "SourceId": "CoffeeShop.Server",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+      "BasePath": "_content/CoffeeShop.Server",
+      "RelativePath": "CoffeeShop.Server#[.{fingerprint}]!.bundle.scp.css",
+      "AssetKind": "All",
+      "AssetMode": "Reference",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ProjectBundle",
+      "Fingerprint": "sjoc3d2190",
+      "Integrity": "SJ7ltgM+BX1x/yKqoDHeCXwoRNloZZDDUMjxmm8HhbU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\CoffeeShop.Server.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\wwwroot\\app.css",
+      "SourceId": "CoffeeShop.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\wwwroot\\",
+      "BasePath": "_content/CoffeeShop.Server",
+      "RelativePath": "app#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "da95v2qkru",
+      "Integrity": "u9qEka1auR7E3rd3/8/j8hkQdSOYj9bRJ4nYiFDR1sE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\app.css"
+    },
+    {
+      "Identity": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "SourceId": "CoffeeShop.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\wwwroot\\",
+      "BasePath": "_content/CoffeeShop.Server",
+      "RelativePath": "bootstrap/bootstrap.min#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "6gzpyzhau4",
+      "Integrity": "SiIVMGgRhdXjKSTIddX7mh9IbOXVcwQWc7/p4nS6D/0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Identity": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "SourceId": "CoffeeShop.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\wwwroot\\",
+      "BasePath": "_content/CoffeeShop.Server",
+      "RelativePath": "bootstrap/bootstrap.min.css#[.{fingerprint}]?.map",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "8inm30yfxf",
+      "Integrity": "gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Identity": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\wwwroot\\favicon.png",
+      "SourceId": "CoffeeShop.Server",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\wwwroot\\",
+      "BasePath": "_content/CoffeeShop.Server",
+      "RelativePath": "favicon#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ifv42okdf2",
+      "Integrity": "4mWsDy3aHl36ZbGt8zByK7Pvd4kRUoNgTYzRnwmPHwg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\favicon.png"
+    },
+    {
+      "Identity": "C:\\Users\\dh519\\.nuget\\packages\\mudblazor\\8.11.0\\staticwebassets\\MudBlazor.min.css",
       "SourceId": "MudBlazor",
       "SourceType": "Package",
-      "ContentRoot": "/home/ubuntu/.nuget/packages/mudblazor/8.11.0/staticwebassets/",
+      "ContentRoot": "C:\\Users\\dh519\\.nuget\\packages\\mudblazor\\8.11.0\\staticwebassets\\",
       "BasePath": "_content/MudBlazor",
       "RelativePath": "MudBlazor.min.css",
       "AssetKind": "All",
@@ -31,15 +157,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "n8rndlt7dy",
+      "Integrity": "pxoL0sR+rW8FeySiRHjFptIGusn0BFRre4j7xSLzJrY=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/home/ubuntu/.nuget/packages/mudblazor/8.11.0/staticwebassets/MudBlazor.min.css"
+      "OriginalItemSpec": "C:\\Users\\dh519\\.nuget\\packages\\mudblazor\\8.11.0\\staticwebassets\\MudBlazor.min.css"
     },
     {
-      "Identity": "/home/ubuntu/.nuget/packages/mudblazor/8.11.0/staticwebassets/MudBlazor.min.js",
+      "Identity": "C:\\Users\\dh519\\.nuget\\packages\\mudblazor\\8.11.0\\staticwebassets\\MudBlazor.min.js",
       "SourceId": "MudBlazor",
       "SourceType": "Package",
-      "ContentRoot": "/home/ubuntu/.nuget/packages/mudblazor/8.11.0/staticwebassets/",
+      "ContentRoot": "C:\\Users\\dh519\\.nuget\\packages\\mudblazor\\8.11.0\\staticwebassets\\",
       "BasePath": "_content/MudBlazor",
       "RelativePath": "MudBlazor.min.js",
       "AssetKind": "All",
@@ -50,123 +178,669 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "ofbdodmtsc",
+      "Integrity": "JIdvZz+p6bMt7bvlJ0UxWaJNf/8AADBtXlwwd75JwMM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/home/ubuntu/.nuget/packages/mudblazor/8.11.0/staticwebassets/MudBlazor.min.js"
+      "OriginalItemSpec": "C:\\Users\\dh519\\.nuget\\packages\\mudblazor\\8.11.0\\staticwebassets\\MudBlazor.min.js"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "_content/MudBlazor/MudBlazor.min.css",
+      "AssetFile": "C:\\Users\\dh519\\.nuget\\packages\\mudblazor\\8.11.0\\staticwebassets\\MudBlazor.min.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "606212"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pxoL0sR+rW8FeySiRHjFptIGusn0BFRre4j7xSLzJrY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 04 Aug 2025 21:02:23 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-pxoL0sR+rW8FeySiRHjFptIGusn0BFRre4j7xSLzJrY="
+        }
+      ]
     },
     {
-      "Identity": "/workspace/src/CoffeeShop.Server/obj/Debug/net8.0/scopedcss/bundle/CoffeeShop.Server.styles.css",
-      "SourceId": "CoffeeShop.Server",
-      "SourceType": "Computed",
-      "ContentRoot": "/workspace/src/CoffeeShop.Server/obj/Debug/net8.0/scopedcss/bundle/",
-      "BasePath": "_content/CoffeeShop.Server",
-      "RelativePath": "CoffeeShop.Server.styles.css",
-      "AssetKind": "All",
-      "AssetMode": "CurrentProject",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "ScopedCss",
-      "AssetTraitValue": "ApplicationBundle",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/workspace/src/CoffeeShop.Server/obj/Debug/net8.0/scopedcss/bundle/CoffeeShop.Server.styles.css"
+      "Route": "_content/MudBlazor/MudBlazor.min.js",
+      "AssetFile": "C:\\Users\\dh519\\.nuget\\packages\\mudblazor\\8.11.0\\staticwebassets\\MudBlazor.min.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "73528"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"JIdvZz+p6bMt7bvlJ0UxWaJNf/8AADBtXlwwd75JwMM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 04 Aug 2025 21:02:23 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-JIdvZz+p6bMt7bvlJ0UxWaJNf/8AADBtXlwwd75JwMM="
+        }
+      ]
     },
     {
-      "Identity": "/workspace/src/CoffeeShop.Server/obj/Debug/net8.0/scopedcss/projectbundle/CoffeeShop.Server.bundle.scp.css",
-      "SourceId": "CoffeeShop.Server",
-      "SourceType": "Computed",
-      "ContentRoot": "/workspace/src/CoffeeShop.Server/obj/Debug/net8.0/scopedcss/projectbundle/",
-      "BasePath": "_content/CoffeeShop.Server",
-      "RelativePath": "CoffeeShop.Server.bundle.scp.css",
-      "AssetKind": "All",
-      "AssetMode": "Reference",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "ScopedCss",
-      "AssetTraitValue": "ProjectBundle",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/workspace/src/CoffeeShop.Server/obj/Debug/net8.0/scopedcss/projectbundle/CoffeeShop.Server.bundle.scp.css"
+      "Route": "_content/MudBlazor/MudBlazor.min.n8rndlt7dy.css",
+      "AssetFile": "C:\\Users\\dh519\\.nuget\\packages\\mudblazor\\8.11.0\\staticwebassets\\MudBlazor.min.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "606212"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pxoL0sR+rW8FeySiRHjFptIGusn0BFRre4j7xSLzJrY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 04 Aug 2025 21:02:23 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "n8rndlt7dy"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-pxoL0sR+rW8FeySiRHjFptIGusn0BFRre4j7xSLzJrY="
+        },
+        {
+          "Name": "label",
+          "Value": "_content/MudBlazor/MudBlazor.min.css"
+        }
+      ]
     },
     {
-      "Identity": "/workspace/src/CoffeeShop.Server/wwwroot/app.css",
-      "SourceId": "CoffeeShop.Server",
-      "SourceType": "Discovered",
-      "ContentRoot": "/workspace/src/CoffeeShop.Server/wwwroot/",
-      "BasePath": "_content/CoffeeShop.Server",
-      "RelativePath": "app.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/app.css"
+      "Route": "_content/MudBlazor/MudBlazor.min.ofbdodmtsc.js",
+      "AssetFile": "C:\\Users\\dh519\\.nuget\\packages\\mudblazor\\8.11.0\\staticwebassets\\MudBlazor.min.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "73528"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"JIdvZz+p6bMt7bvlJ0UxWaJNf/8AADBtXlwwd75JwMM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 04 Aug 2025 21:02:23 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ofbdodmtsc"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-JIdvZz+p6bMt7bvlJ0UxWaJNf/8AADBtXlwwd75JwMM="
+        },
+        {
+          "Name": "label",
+          "Value": "_content/MudBlazor/MudBlazor.min.js"
+        }
+      ]
     },
     {
-      "Identity": "/workspace/src/CoffeeShop.Server/wwwroot/bootstrap/bootstrap.min.css",
-      "SourceId": "CoffeeShop.Server",
-      "SourceType": "Discovered",
-      "ContentRoot": "/workspace/src/CoffeeShop.Server/wwwroot/",
-      "BasePath": "_content/CoffeeShop.Server",
-      "RelativePath": "bootstrap/bootstrap.min.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/bootstrap/bootstrap.min.css"
+      "Route": "app.css",
+      "AssetFile": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\wwwroot\\app.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2591"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"u9qEka1auR7E3rd3/8/j8hkQdSOYj9bRJ4nYiFDR1sE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 06 Aug 2025 08:00:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-u9qEka1auR7E3rd3/8/j8hkQdSOYj9bRJ4nYiFDR1sE="
+        }
+      ]
     },
     {
-      "Identity": "/workspace/src/CoffeeShop.Server/wwwroot/bootstrap/bootstrap.min.css.map",
-      "SourceId": "CoffeeShop.Server",
-      "SourceType": "Discovered",
-      "ContentRoot": "/workspace/src/CoffeeShop.Server/wwwroot/",
-      "BasePath": "_content/CoffeeShop.Server",
-      "RelativePath": "bootstrap/bootstrap.min.css.map",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/bootstrap/bootstrap.min.css.map"
+      "Route": "app.da95v2qkru.css",
+      "AssetFile": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\wwwroot\\app.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2591"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"u9qEka1auR7E3rd3/8/j8hkQdSOYj9bRJ4nYiFDR1sE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 06 Aug 2025 08:00:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "da95v2qkru"
+        },
+        {
+          "Name": "label",
+          "Value": "app.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-u9qEka1auR7E3rd3/8/j8hkQdSOYj9bRJ4nYiFDR1sE="
+        }
+      ]
     },
     {
-      "Identity": "/workspace/src/CoffeeShop.Server/wwwroot/favicon.png",
-      "SourceId": "CoffeeShop.Server",
-      "SourceType": "Discovered",
-      "ContentRoot": "/workspace/src/CoffeeShop.Server/wwwroot/",
-      "BasePath": "_content/CoffeeShop.Server",
-      "RelativePath": "favicon.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/favicon.png"
+      "Route": "bootstrap/bootstrap.min.6gzpyzhau4.css",
+      "AssetFile": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "162726"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SiIVMGgRhdXjKSTIddX7mh9IbOXVcwQWc7/p4nS6D/0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 06 Aug 2025 08:00:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "6gzpyzhau4"
+        },
+        {
+          "Name": "label",
+          "Value": "bootstrap/bootstrap.min.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-SiIVMGgRhdXjKSTIddX7mh9IbOXVcwQWc7/p4nS6D/0="
+        }
+      ]
+    },
+    {
+      "Route": "bootstrap/bootstrap.min.css",
+      "AssetFile": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "162726"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SiIVMGgRhdXjKSTIddX7mh9IbOXVcwQWc7/p4nS6D/0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 06 Aug 2025 08:00:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-SiIVMGgRhdXjKSTIddX7mh9IbOXVcwQWc7/p4nS6D/0="
+        }
+      ]
+    },
+    {
+      "Route": "bootstrap/bootstrap.min.css.8inm30yfxf.map",
+      "AssetFile": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "449111"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 06 Aug 2025 08:00:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8inm30yfxf"
+        },
+        {
+          "Name": "label",
+          "Value": "bootstrap/bootstrap.min.css.map"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ="
+        }
+      ]
+    },
+    {
+      "Route": "bootstrap/bootstrap.min.css.map",
+      "AssetFile": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "449111"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 06 Aug 2025 08:00:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-gBwg2tmA0Ci2u54gMF1jNCVku6vznarkLS6D76htNNQ="
+        }
+      ]
+    },
+    {
+      "Route": "CoffeeShop.Server.bundle.scp.css",
+      "AssetFile": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\CoffeeShop.Server.bundle.scp.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5917"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SJ7ltgM+BX1x/yKqoDHeCXwoRNloZZDDUMjxmm8HhbU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 06 Aug 2025 08:00:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-SJ7ltgM+BX1x/yKqoDHeCXwoRNloZZDDUMjxmm8HhbU="
+        }
+      ]
+    },
+    {
+      "Route": "CoffeeShop.Server.sjoc3d2190.bundle.scp.css",
+      "AssetFile": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\CoffeeShop.Server.bundle.scp.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5917"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SJ7ltgM+BX1x/yKqoDHeCXwoRNloZZDDUMjxmm8HhbU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 06 Aug 2025 08:00:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "sjoc3d2190"
+        },
+        {
+          "Name": "label",
+          "Value": "CoffeeShop.Server.bundle.scp.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-SJ7ltgM+BX1x/yKqoDHeCXwoRNloZZDDUMjxmm8HhbU="
+        }
+      ]
+    },
+    {
+      "Route": "CoffeeShop.Server.sjoc3d2190.styles.css",
+      "AssetFile": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\CoffeeShop.Server.styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5917"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SJ7ltgM+BX1x/yKqoDHeCXwoRNloZZDDUMjxmm8HhbU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 06 Aug 2025 08:00:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "sjoc3d2190"
+        },
+        {
+          "Name": "label",
+          "Value": "CoffeeShop.Server.styles.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-SJ7ltgM+BX1x/yKqoDHeCXwoRNloZZDDUMjxmm8HhbU="
+        }
+      ]
+    },
+    {
+      "Route": "CoffeeShop.Server.styles.css",
+      "AssetFile": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\CoffeeShop.Server.styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5917"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SJ7ltgM+BX1x/yKqoDHeCXwoRNloZZDDUMjxmm8HhbU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 06 Aug 2025 08:00:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-SJ7ltgM+BX1x/yKqoDHeCXwoRNloZZDDUMjxmm8HhbU="
+        }
+      ]
+    },
+    {
+      "Route": "favicon.ifv42okdf2.png",
+      "AssetFile": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\wwwroot\\favicon.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1148"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4mWsDy3aHl36ZbGt8zByK7Pvd4kRUoNgTYzRnwmPHwg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 06 Aug 2025 08:00:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ifv42okdf2"
+        },
+        {
+          "Name": "label",
+          "Value": "favicon.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-4mWsDy3aHl36ZbGt8zByK7Pvd4kRUoNgTYzRnwmPHwg="
+        }
+      ]
+    },
+    {
+      "Route": "favicon.png",
+      "AssetFile": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\wwwroot\\favicon.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1148"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4mWsDy3aHl36ZbGt8zByK7Pvd4kRUoNgTYzRnwmPHwg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 06 Aug 2025 08:00:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-4mWsDy3aHl36ZbGt8zByK7Pvd4kRUoNgTYzRnwmPHwg="
+        }
+      ]
     }
   ]
 }

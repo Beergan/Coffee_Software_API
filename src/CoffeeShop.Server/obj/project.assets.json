@@ -5589,32 +5589,40 @@
     ]
   },
   "packageFolders": {
-    "/home/ubuntu/.nuget/packages/": {}
+    "C:\\Users\\dh519\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/workspace/src/CoffeeShop.Server/CoffeeShop.Server.csproj",
+      "projectUniqueName": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\CoffeeShop.Server.csproj",
       "projectName": "CoffeeShop.Server",
-      "projectPath": "/workspace/src/CoffeeShop.Server/CoffeeShop.Server.csproj",
-      "packagesPath": "/home/ubuntu/.nuget/packages/",
-      "outputPath": "/workspace/src/CoffeeShop.Server/obj/",
+      "projectPath": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\CoffeeShop.Server.csproj",
+      "packagesPath": "C:\\Users\\dh519\\.nuget\\packages\\",
+      "outputPath": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Server\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/home/ubuntu/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\dh519\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/workspace/src/CoffeeShop.Shared/CoffeeShop.Shared.csproj": {
-              "projectPath": "/workspace/src/CoffeeShop.Shared/CoffeeShop.Shared.csproj"
+            "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Shared\\CoffeeShop.Shared.csproj": {
+              "projectPath": "C:\\software\\Coffee_Software_API\\src\\CoffeeShop.Shared\\CoffeeShop.Shared.csproj"
             }
           }
         }
@@ -5628,7 +5636,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -5676,7 +5685,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/home/ubuntu/.dotnet/sdk/8.0.413/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
