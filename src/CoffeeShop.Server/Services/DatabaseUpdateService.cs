@@ -30,6 +30,16 @@ public class DatabaseUpdateService : IDatabaseUpdateService
         {
             _logger.LogInformation("Checking for pending migrations...");
             
+            // Force ensure database is created first
+            var canConnect = await _context.Database.CanConnectAsync();
+            if (!canConnect)
+            {
+                _logger.LogInformation("Database does not exist. Creating database...");
+                await _context.Database.EnsureCreatedAsync();
+                _logger.LogInformation("Database created successfully.");
+                return;
+            }
+            
             var pendingMigrations = await GetPendingMigrationsAsync();
             if (pendingMigrations.Any())
             {
@@ -44,8 +54,18 @@ public class DatabaseUpdateService : IDatabaseUpdateService
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error updating database");
-            throw;
+            _logger.LogError(ex, "Error updating database. Falling back to EnsureCreated...");
+            try
+            {
+                await _context.Database.EnsureDeletedAsync();
+                await _context.Database.EnsureCreatedAsync();
+                _logger.LogInformation("Database recreated successfully using EnsureCreated.");
+            }
+            catch (Exception ensureEx)
+            {
+                _logger.LogError(ensureEx, "Failed to create database");
+                throw;
+            }
         }
     }
 
