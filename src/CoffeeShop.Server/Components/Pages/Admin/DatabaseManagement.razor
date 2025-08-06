@@ -1,0 +1,270 @@
+@page "/admin/database"
+@using CoffeeShop.Server.Services
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Roles = "Admin")]
+@inject IDatabaseUpdateService DatabaseUpdateService
+@inject ISnackbar Snackbar
+
+<PageTitle>Database Management - Coffee Shop</PageTitle>
+
+<MudText Typo="Typo.h3" GutterBottom="true">
+    <MudIcon Icon="Icons.Material.Filled.Storage" Class="mr-3" />
+    Database Management
+</MudText>
+
+<MudGrid>
+    <MudItem xs="12" md="6">
+        <MudPaper Class="pa-4" Elevation="2">
+            <MudText Typo="Typo.h5" GutterBottom="true">Database Status</MudText>
+            
+            <MudStack Spacing="3">
+                <MudStack Row AlignItems="AlignItems.Center">
+                    <MudText>Database Status:</MudText>
+                    <MudChip T="string" Color="@(isUpToDate ? Color.Success : Color.Warning)" Size="Size.Small">
+                        @(isUpToDate ? "Up to Date" : "Pending Updates")
+                    </MudChip>
+                </MudStack>
+                
+                @if (pendingMigrations.Any())
+                {
+                    <MudText Typo="Typo.h6">Pending Migrations:</MudText>
+                    <MudList Dense="true">
+                        @foreach (var migration in pendingMigrations)
+                        {
+                            <MudListItem>
+                                <MudText Typo="Typo.body2">• @migration</MudText>
+                            </MudListItem>
+                        }
+                    </MudList>
+                }
+            </MudStack>
+            
+            <MudButton Variant="Variant.Outlined" 
+                      Color="Color.Info" 
+                      StartIcon="Icons.Material.Filled.Refresh"
+                      OnClick="CheckDatabaseStatus"
+                      Class="mt-4">
+                Refresh Status
+            </MudButton>
+        </MudPaper>
+    </MudItem>
+    
+    <MudItem xs="12" md="6">
+        <MudPaper Class="pa-4" Elevation="2">
+            <MudText Typo="Typo.h5" GutterBottom="true">Database Actions</MudText>
+            
+            <MudStack Spacing="3">
+                <MudButton Variant="Variant.Filled" 
+                          Color="Color.Primary" 
+                          StartIcon="Icons.Material.Filled.Update"
+                          OnClick="UpdateDatabase"
+                          Disabled="@isUpdating">
+                    @if (isUpdating)
+                    {
+                        <MudProgressCircular Size="Size.Small" Indeterminate="true" />
+                        <MudText Class="ml-2">Updating...</MudText>
+                    }
+                    else
+                    {
+                        <text>Update Database</text>
+                    }
+                </MudButton>
+                
+                <MudButton Variant="Variant.Filled" 
+                          Color="Color.Secondary" 
+                          StartIcon="Icons.Material.Filled.Backup"
+                          OnClick="SeedData"
+                          Disabled="@isSeeding">
+                    @if (isSeeding)
+                    {
+                        <MudProgressCircular Size="Size.Small" Indeterminate="true" />
+                        <MudText Class="ml-2">Seeding...</MudText>
+                    }
+                    else
+                    {
+                        <text>Reseed Data</text>
+                    }
+                </MudButton>
+                
+                <MudDivider />
+                
+                <MudText Typo="Typo.subtitle2" Color="Color.Error">Danger Zone</MudText>
+                
+                <MudButton Variant="Variant.Outlined" 
+                          Color="Color.Error" 
+                          StartIcon="Icons.Material.Filled.Warning"
+                          OnClick="ForceUpdateSchema"
+                          Disabled="@isForceUpdating">
+                    @if (isForceUpdating)
+                    {
+                        <MudProgressCircular Size="Size.Small" Indeterminate="true" />
+                        <MudText Class="ml-2">Force Updating...</MudText>
+                    }
+                    else
+                    {
+                        <text>Force Recreate Database</text>
+                    }
+                </MudButton>
+                
+                <MudText Typo="Typo.caption" Color="Color.Error">
+                    ⚠️ This will delete all existing data!
+                </MudText>
+            </MudStack>
+        </MudPaper>
+    </MudItem>
+</MudGrid>
+
+<MudPaper Class="pa-4 mt-4" Elevation="2">
+    <MudText Typo="Typo.h5" GutterBottom="true">
+        <MudIcon Icon="Icons.Material.Filled.Info" Class="mr-2" />
+        How to Update Database
+    </MudText>
+    
+    <MudExpansionPanels>
+        <MudExpansionPanel Text="Manual Database Update">
+            <MudText Typo="Typo.body2" Class="mb-2">
+                To manually update the database when you make model changes:
+            </MudText>
+            <MudCode Language="bash">
+# 1. Stop the application<br/>
+# 2. Delete the database file (SQLite)<br/>
+rm CoffeeShop.db<br/><br/>
+# 3. Restart the application<br/>
+dotnet run<br/><br/>
+# The app will automatically recreate the database with new schema
+            </MudCode>
+        </MudExpansionPanel>
+        
+        <MudExpansionPanel Text="Using Code-First Migrations">
+            <MudText Typo="Typo.body2" Class="mb-2">
+                For production environments, use proper migrations:
+            </MudText>
+            <MudCode Language="bash">
+# 1. Install EF Core Tools<br/>
+dotnet tool install --global dotnet-ef<br/><br/>
+# 2. Add migration for your changes<br/>
+dotnet ef migrations add YourMigrationName<br/><br/>
+# 3. Update database<br/>
+dotnet ef database update
+            </MudCode>
+        </MudExpansionPanel>
+        
+        <MudExpansionPanel Text="Adding New Properties to Models">
+            <MudText Typo="Typo.body2" Class="mb-2">
+                When you add new properties to existing models:
+            </MudText>
+            <MudList Dense="true">
+                <MudListItem>
+                    <MudText>1. Add the property to your model class</MudText>
+                </MudListItem>
+                <MudListItem>
+                    <MudText>2. Add appropriate data annotations if needed</MudText>
+                </MudListItem>
+                <MudListItem>
+                    <MudText>3. Update the ApplicationDbContext configuration if required</MudText>
+                </MudListItem>
+                <MudListItem>
+                    <MudText>4. Use "Force Recreate Database" button above (development only)</MudText>
+                </MudListItem>
+            </MudList>
+        </MudExpansionPanel>
+    </MudExpansionPanels>
+</MudPaper>
+
+@code {
+    private bool isUpToDate = true;
+    private List<string> pendingMigrations = new();
+    private bool isUpdating = false;
+    private bool isSeeding = false;
+    private bool isForceUpdating = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CheckDatabaseStatus();
+    }
+
+    private async Task CheckDatabaseStatus()
+    {
+        try
+        {
+            isUpToDate = await DatabaseUpdateService.IsDatabaseUpToDateAsync();
+            pendingMigrations = await DatabaseUpdateService.GetPendingMigrationsAsync();
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"Error checking database status: {ex.Message}", Severity.Error);
+        }
+    }
+
+    private async Task UpdateDatabase()
+    {
+        isUpdating = true;
+        try
+        {
+            await DatabaseUpdateService.UpdateDatabaseAsync();
+            await CheckDatabaseStatus();
+            Snackbar.Add("Database updated successfully!", Severity.Success);
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"Error updating database: {ex.Message}", Severity.Error);
+        }
+        finally
+        {
+            isUpdating = false;
+        }
+    }
+
+    private async Task SeedData()
+    {
+        isSeeding = true;
+        try
+        {
+            await DatabaseUpdateService.SeedDataAsync();
+            Snackbar.Add("Data seeded successfully!", Severity.Success);
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"Error seeding data: {ex.Message}", Severity.Error);
+        }
+        finally
+        {
+            isSeeding = false;
+        }
+    }
+
+    private async Task ForceUpdateSchema()
+    {
+        var confirmed = await Snackbar.Add(
+            "Are you sure? This will delete ALL existing data and recreate the database!",
+            Severity.Warning,
+            configure: config =>
+            {
+                config.Action = "Confirm";
+                config.ActionColor = Color.Error;
+                config.RequireInteraction = true;
+            }).Result;
+
+        if (confirmed)
+        {
+            isForceUpdating = true;
+            try
+            {
+                // Cast to concrete type to access ForceUpdateSchemaAsync
+                var concreteService = (DatabaseUpdateService)DatabaseUpdateService;
+                await concreteService.ForceUpdateSchemaAsync();
+                await CheckDatabaseStatus();
+                Snackbar.Add("Database recreated successfully!", Severity.Success);
+            }
+            catch (Exception ex)
+            {
+                Snackbar.Add($"Error recreating database: {ex.Message}", Severity.Error);
+            }
+            finally
+            {
+                isForceUpdating = false;
+            }
+        }
+    }
+}

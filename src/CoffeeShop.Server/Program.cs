@@ -43,6 +43,7 @@ builder.Services.AddMudServices();
 // Add application services
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IDatabaseUpdateService, DatabaseUpdateService>();
 
 // Configure authentication
 builder.Services.ConfigureApplicationCookie(options =>
@@ -56,18 +57,16 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 var app = builder.Build();
 
-// Seed database on startup
+// Update database and seed data on startup
 using (var scope = app.Services.CreateScope())
 {
-    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
-    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var databaseUpdateService = scope.ServiceProvider.GetRequiredService<IDatabaseUpdateService>();
     
-    // Ensure database is created
-    context.Database.EnsureCreated();
+    // Apply any pending migrations
+    await databaseUpdateService.UpdateDatabaseAsync();
     
     // Seed initial data
-    await SeedData.SeedAsync(context, userManager, roleManager);
+    await databaseUpdateService.SeedDataAsync();
 }
 
 // Configure the HTTP request pipeline.
