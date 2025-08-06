@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using CoffeeShop.Shared.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace CoffeeShop.Server.Data;
 
@@ -20,6 +21,10 @@ public class ApplicationDbContext : IdentityDbContext<User>
         base.OnModelCreating(builder);
 
         // Configure User
+        builder.Entity<IdentityRole>(entity =>
+        {
+            entity.Property(r => r.Id).HasMaxLength(450);
+        });
         builder.Entity<User>(entity =>
         {
             entity.Property(e => e.FirstName).IsRequired().HasMaxLength(100);
@@ -93,5 +98,6 @@ public class ApplicationDbContext : IdentityDbContext<User>
 
         builder.Entity<User>()
             .HasIndex(e => e.Role);
+      
     }
 }
