@@ -1,0 +1,170 @@
+@page "/"
+@using MudBlazor
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+
+<PageTitle>Dashboard - Coffee Shop</PageTitle>
+
+<MudText Typo="Typo.h3" GutterBottom="true">
+    <MudIcon Icon="Icons.Material.Filled.Dashboard" Class="mr-3" />
+    Dashboard
+</MudText>
+
+<MudGrid>
+    <!-- Quick Stats Cards -->
+    <MudItem xs="12" sm="6" md="3">
+        <MudPaper Elevation="2" Class="pa-4">
+            <MudStack Row AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
+                <div>
+                    <MudText Typo="Typo.h4">24</MudText>
+                    <MudText Typo="Typo.body2">Today's Orders</MudText>
+                </div>
+                <MudIcon Icon="Icons.Material.Filled.ShoppingCart" Color="Color.Primary" Size="Size.Large" />
+            </MudStack>
+        </MudPaper>
+    </MudItem>
+    
+    <MudItem xs="12" sm="6" md="3">
+        <MudPaper Elevation="2" Class="pa-4">
+            <MudStack Row AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
+                <div>
+                    <MudText Typo="Typo.h4">$485</MudText>
+                    <MudText Typo="Typo.body2">Today's Revenue</MudText>
+                </div>
+                <MudIcon Icon="Icons.Material.Filled.AttachMoney" Color="Color.Success" Size="Size.Large" />
+            </MudStack>
+        </MudPaper>
+    </MudItem>
+    
+    <MudItem xs="12" sm="6" md="3">
+        <MudPaper Elevation="2" Class="pa-4">
+            <MudStack Row AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
+                <div>
+                    <MudText Typo="Typo.h4">3</MudText>
+                    <MudText Typo="Typo.body2">Pending Orders</MudText>
+                </div>
+                <MudIcon Icon="Icons.Material.Filled.HourglassEmpty" Color="Color.Warning" Size="Size.Large" />
+            </MudStack>
+        </MudPaper>
+    </MudItem>
+    
+    <MudItem xs="12" sm="6" md="3">
+        <MudPaper Elevation="2" Class="pa-4">
+            <MudStack Row AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
+                <div>
+                    <MudText Typo="Typo.h4">45</MudText>
+                    <MudText Typo="Typo.body2">Products Available</MudText>
+                </div>
+                <MudIcon Icon="Icons.Material.Filled.LocalCafe" Color="Color.Info" Size="Size.Large" />
+            </MudStack>
+        </MudPaper>
+    </MudItem>
+</MudGrid>
+
+<!-- Quick Actions -->
+<MudText Typo="Typo.h5" Class="mt-6 mb-4">Quick Actions</MudText>
+<MudGrid>
+    <MudItem xs="12" sm="6" md="4">
+        <MudCard Elevation="2">
+            <MudCardContent>
+                <MudText Typo="Typo.h6" GutterBottom="true">
+                    <MudIcon Icon="Icons.Material.Filled.Add" Class="mr-2" />
+                    New Order
+                </MudText>
+                <MudText Typo="Typo.body2">Create a new order for customers</MudText>
+            </MudCardContent>
+            <MudCardActions>
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="/orders/new">
+                    Create Order
+                </MudButton>
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+    
+    <MudItem xs="12" sm="6" md="4">
+        <MudCard Elevation="2">
+            <MudCardContent>
+                <MudText Typo="Typo.h6" GutterBottom="true">
+                    <MudIcon Icon="Icons.Material.Filled.Inventory" Class="mr-2" />
+                    Manage Products
+                </MudText>
+                <MudText Typo="Typo.body2">View and manage product inventory</MudText>
+            </MudCardContent>
+            <MudCardActions>
+                <MudButton Variant="Variant.Filled" Color="Color.Secondary" Href="/products">
+                    View Products
+                </MudButton>
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+    
+    <MudItem xs="12" sm="6" md="4">
+        <MudCard Elevation="2">
+            <MudCardContent>
+                <MudText Typo="Typo.h6" GutterBottom="true">
+                    <MudIcon Icon="Icons.Material.Filled.Assessment" Class="mr-2" />
+                    View Reports
+                </MudText>
+                <MudText Typo="Typo.body2">Check sales and performance reports</MudText>
+            </MudCardContent>
+            <MudCardActions>
+                <MudButton Variant="Variant.Filled" Color="Color.Tertiary" Href="/reports">
+                    View Reports
+                </MudButton>
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+</MudGrid>
+
+<!-- Recent Orders -->
+<MudText Typo="Typo.h5" Class="mt-6 mb-4">Recent Orders</MudText>
+<MudPaper Elevation="2">
+    <MudTable Items="@recentOrders" Hover="true" Breakpoint="Breakpoint.Sm">
+        <HeaderContent>
+            <MudTh>Order #</MudTh>
+            <MudTh>Customer</MudTh>
+            <MudTh>Amount</MudTh>
+            <MudTh>Status</MudTh>
+            <MudTh>Time</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Order #">@context.OrderNumber</MudTd>
+            <MudTd DataLabel="Customer">@(context.CustomerName ?? "Walk-in")</MudTd>
+            <MudTd DataLabel="Amount">$@context.TotalAmount.ToString("F2")</MudTd>
+            <MudTd DataLabel="Status">
+                <MudChip T="string" Color="@GetStatusColor(context.Status)" Size="Size.Small">
+                    @context.Status
+                </MudChip>
+            </MudTd>
+            <MudTd DataLabel="Time">@context.CreatedAt.ToString("HH:mm")</MudTd>
+        </RowTemplate>
+    </MudTable>
+</MudPaper>
+
+@code {
+    private List<OrderSummary> recentOrders = new()
+    {
+        new() { OrderNumber = "ORD-001", CustomerName = "John Doe", TotalAmount = 15.50m, Status = "Completed", CreatedAt = DateTime.Now.AddMinutes(-30) },
+        new() { OrderNumber = "ORD-002", CustomerName = null, TotalAmount = 8.75m, Status = "Preparing", CreatedAt = DateTime.Now.AddMinutes(-15) },
+        new() { OrderNumber = "ORD-003", CustomerName = "Jane Smith", TotalAmount = 22.00m, Status = "Ready", CreatedAt = DateTime.Now.AddMinutes(-5) },
+    };
+
+    private Color GetStatusColor(string status) => status switch
+    {
+        "Completed" => Color.Success,
+        "Ready" => Color.Info,
+        "Preparing" => Color.Warning,
+        "Pending" => Color.Default,
+        "Cancelled" => Color.Error,
+        _ => Color.Default
+    };
+
+    public class OrderSummary
+    {
+        public string OrderNumber { get; set; } = string.Empty;
+        public string? CustomerName { get; set; }
+        public decimal TotalAmount { get; set; }
+        public string Status { get; set; } = string.Empty;
+        public DateTime CreatedAt { get; set; }
+    }
+}

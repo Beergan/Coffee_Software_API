@@ -1,0 +1,217 @@
+@page "/products"
+@using CoffeeShop.Shared.Models
+@using CoffeeShop.Server.Services
+@using CoffeeShop.Server.Components.Dialogs
+@using MudBlazor
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@inject IProductService ProductService
+@inject ISnackbar Snackbar
+@inject IDialogService DialogService
+
+<PageTitle>Products - Coffee Shop</PageTitle>
+
+<MudText Typo="Typo.h3" GutterBottom="true">
+    <MudIcon Icon="Icons.Material.Filled.LocalCafe" Class="mr-3" />
+    Products Management
+</MudText>
+
+<MudPaper Class="pa-4 mb-4">
+    <MudStack Row AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
+        <MudTextField @bind-Value="searchText" 
+                     Placeholder="Search products..." 
+                     Adornment="Adornment.Start" 
+                     AdornmentIcon="Icons.Material.Filled.Search"
+                     Variant="Variant.Outlined"
+                     Margin="Margin.Dense" />
+        
+        <MudSelect @bind-Value="selectedCategory" 
+                  Label="Category" 
+                  Variant="Variant.Outlined"
+                  Margin="Margin.Dense">
+            <MudSelectItem Value="(ProductCategory?)null">All Categories</MudSelectItem>
+            @foreach (var category in Enum.GetValues<ProductCategory>())
+            {
+                <MudSelectItem Value="category">@category</MudSelectItem>
+            }
+        </MudSelect>
+
+        <AuthorizeView Roles="Manager,Admin" Context="managerContext">
+            <Authorized>
+                <MudButton Variant="Variant.Filled" 
+                          Color="Color.Primary" 
+                          StartIcon="Icons.Material.Filled.Add"
+                          OnClick="OpenAddProductDialog">
+                    Add Product
+                </MudButton>
+            </Authorized>
+        </AuthorizeView>
+    </MudStack>
+</MudPaper>
+
+@if (isLoading)
+{
+    <MudProgressLinear Indeterminate="true" />
+}
+else
+{
+    <MudGrid>
+        @foreach (var product in FilteredProducts)
+        {
+            <MudItem xs="12" sm="6" md="4" lg="3">
+                <MudCard Elevation="2" Style="height: 100%">
+                    @if (!string.IsNullOrEmpty(product.ImageUrl))
+                    {
+                        <MudCardMedia Image="@product.ImageUrl" Height="200" />
+                    }
+                    else
+                    {
+                        <MudPaper Height="200" Class="d-flex align-center justify-center mud-theme-primary">
+                            <MudIcon Icon="Icons.Material.Filled.LocalCafe" Size="Size.Large" Color="Color.Surface" />
+                        </MudPaper>
+                    }
+                    
+                    <MudCardContent>
+                        <MudText Typo="Typo.h6" GutterBottom="true">@product.Name</MudText>
+                        <MudText Typo="Typo.body2" Class="mb-2">@product.Description</MudText>
+                        <MudChip T="string" Size="Size.Small" Color="Color.Info">@product.Category</MudChip>
+                        <MudText Typo="Typo.h6" Color="Color.Primary" Class="mt-2">$@product.Price.ToString("F2")</MudText>
+                        
+                        <MudStack Row AlignItems="AlignItems.Center" Class="mt-2">
+                            <MudText Typo="Typo.body2">Stock: @product.StockQuantity</MudText>
+                            <MudSpacer />
+                            @if (product.IsAvailable && product.StockQuantity > 0)
+                            {
+                                <MudChip T="string" Size="Size.Small" Color="Color.Success">Available</MudChip>
+                            }
+                            else
+                            {
+                                <MudChip T="string" Size="Size.Small" Color="Color.Error">Unavailable</MudChip>
+                            }
+                        </MudStack>
+                    </MudCardContent>
+                    
+                    <AuthorizeView Roles="Manager,Admin" Context="managerContext">
+                        <Authorized>
+                            <MudCardActions>
+                                <MudIconButton Icon="Icons.Material.Filled.Edit" 
+                                              Color="Color.Primary" 
+                                              OnClick="() => OpenEditProductDialog(product)" />
+                                <MudIconButton Icon="@(product.IsAvailable ? Icons.Material.Filled.VisibilityOff : Icons.Material.Filled.Visibility)" 
+                                              Color="Color.Warning" 
+                                              OnClick="() => ToggleAvailability(product)" />
+                                <MudIconButton Icon="Icons.Material.Filled.Delete" 
+                                              Color="Color.Error" 
+                                              OnClick="() => DeleteProduct(product)" />
+                            </MudCardActions>
+                        </Authorized>
+                    </AuthorizeView>
+                </MudCard>
+            </MudItem>
+        }
+    </MudGrid>
+
+    @if (!FilteredProducts.Any())
+    {
+        <MudPaper Class="pa-8 text-center">
+            <MudIcon Icon="Icons.Material.Filled.SearchOff" Size="Size.Large" Color="Color.Default" />
+            <MudText Typo="Typo.h6" Class="mt-4">No products found</MudText>
+            <MudText Typo="Typo.body1">Try adjusting your search criteria</MudText>
+        </MudPaper>
+    }
+}
+
+@code {
+    private List<Product> products = new();
+    private string searchText = "";
+    private ProductCategory? selectedCategory = null;
+    private bool isLoading = true;
+
+    private IEnumerable<Product> FilteredProducts => products.Where(p =>
+        (string.IsNullOrEmpty(searchText) || p.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
+         (!string.IsNullOrEmpty(p.Description) && p.Description.Contains(searchText, StringComparison.OrdinalIgnoreCase))) &&
+        (selectedCategory == null || p.Category == selectedCategory));
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadProducts();
+    }
+
+    private async Task LoadProducts()
+    {
+        isLoading = true;
+        try
+        {
+            products = await ProductService.GetAllProductsAsync();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"Error loading products: {ex.Message}", Severity.Error);
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task OpenAddProductDialog()
+    {
+        var parameters = new DialogParameters();
+        var dialog = await DialogService.ShowAsync<ProductDialog>("Add Product", parameters);
+        var result = await dialog.Result;
+
+        if (result != null && !result.Canceled)
+        {
+            await LoadProducts();
+        }
+    }
+
+    private async Task OpenEditProductDialog(Product product)
+    {
+        var parameters = new DialogParameters { ["Product"] = product };
+        var dialog = await DialogService.ShowAsync<ProductDialog>("Edit Product", parameters);
+        var result = await dialog.Result;
+
+        if (result != null && !result.Canceled)
+        {
+            await LoadProducts();
+        }
+    }
+
+    private async Task ToggleAvailability(Product product)
+    {
+        try
+        {
+            await ProductService.ToggleAvailabilityAsync(product.Id);
+            product.IsAvailable = !product.IsAvailable;
+            Snackbar.Add($"Product {product.Name} is now {(product.IsAvailable ? "available" : "unavailable")}", Severity.Success);
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"Error updating product: {ex.Message}", Severity.Error);
+        }
+    }
+
+    private async Task DeleteProduct(Product product)
+    {
+        var confirmed = await DialogService.ShowMessageBox(
+            "Delete Product",
+            $"Are you sure you want to delete {product.Name}?",
+            yesText: "Delete",
+            cancelText: "Cancel");
+
+        if (confirmed == true)
+        {
+            try
+            {
+                await ProductService.DeleteProductAsync(product.Id);
+                products.Remove(product);
+                Snackbar.Add($"Product {product.Name} deleted successfully", Severity.Success);
+            }
+            catch (Exception ex)
+            {
+                Snackbar.Add($"Error deleting product: {ex.Message}", Severity.Error);
+            }
+        }
+    }
+}

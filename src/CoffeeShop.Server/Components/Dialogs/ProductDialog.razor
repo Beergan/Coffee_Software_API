@@ -1,0 +1,145 @@
+@using CoffeeShop.Shared.Models
+@using CoffeeShop.Server.Services
+@inject IProductService ProductService
+@inject ISnackbar Snackbar
+
+<MudDialog>
+    <DialogContent>
+        <EditForm Model="@product" OnValidSubmit="OnValidSubmit">
+            <DataAnnotationsValidator />
+            
+            <MudGrid>
+                <MudItem xs="12">
+                    <MudTextField Label="Product Name"
+                                 @bind-Value="product.Name"
+                                 For="@(() => product.Name)"
+                                 Variant="Variant.Outlined" />
+                </MudItem>
+                
+                <MudItem xs="12">
+                    <MudTextField Label="Description"
+                                 @bind-Value="product.Description"
+                                 For="@(() => product.Description)"
+                                 Variant="Variant.Outlined"
+                                 Lines="3" />
+                </MudItem>
+                
+                <MudItem xs="6">
+                    <MudNumericField Label="Price"
+                                    @bind-Value="product.Price"
+                                    For="@(() => product.Price)"
+                                    Variant="Variant.Outlined"
+                                    Format="F2"
+                                    Adornment="Adornment.Start"
+                                    AdornmentText="$" />
+                </MudItem>
+                
+                <MudItem xs="6">
+                    <MudSelect Label="Category"
+                              @bind-Value="product.Category"
+                              For="@(() => product.Category)"
+                              Variant="Variant.Outlined">
+                        @foreach (var category in Enum.GetValues<ProductCategory>())
+                        {
+                            <MudSelectItem Value="category">@category</MudSelectItem>
+                        }
+                    </MudSelect>
+                </MudItem>
+                
+                <MudItem xs="6">
+                    <MudNumericField Label="Stock Quantity"
+                                    @bind-Value="product.StockQuantity"
+                                    For="@(() => product.StockQuantity)"
+                                    Variant="Variant.Outlined" />
+                </MudItem>
+                
+                <MudItem xs="6">
+                    <MudSwitch @bind-Value="product.IsAvailable"
+                              Label="Available"
+                              Color="Color.Primary" />
+                </MudItem>
+                
+                <MudItem xs="12">
+                    <MudTextField Label="Image URL"
+                                 @bind-Value="product.ImageUrl"
+                                 For="@(() => product.ImageUrl)"
+                                 Variant="Variant.Outlined"
+                                 Placeholder="https://example.com/image.jpg" />
+                </MudItem>
+            </MudGrid>
+        </EditForm>
+    </DialogContent>
+    
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton Color="Color.Primary" Variant="Variant.Filled" OnClick="OnValidSubmit" Disabled="@isLoading">
+            @if (isLoading)
+            {
+                <MudProgressCircular Size="Size.Small" Indeterminate="true" />
+            }
+            else
+            {
+                <text>@(isEdit ? "Update" : "Create")</text>
+            }
+        </MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter] IDialogReference? MudDialog { get; set; }
+    [Parameter] public Product? Product { get; set; }
+
+    private Product product = new();
+    private bool isEdit = false;
+    private bool isLoading = false;
+
+    protected override void OnInitialized()
+    {
+        if (Product != null)
+        {
+            product = new Product
+            {
+                Id = Product.Id,
+                Name = Product.Name,
+                Description = Product.Description,
+                Price = Product.Price,
+                Category = Product.Category,
+                ImageUrl = Product.ImageUrl,
+                IsAvailable = Product.IsAvailable,
+                StockQuantity = Product.StockQuantity
+            };
+            isEdit = true;
+        }
+    }
+
+    private async Task OnValidSubmit()
+    {
+        isLoading = true;
+        try
+        {
+            if (isEdit)
+            {
+                product.Id = Product!.Id;
+                await ProductService.UpdateProductAsync(product);
+                Snackbar.Add("Product updated successfully!", Severity.Success);
+            }
+            else
+            {
+                await ProductService.CreateProductAsync(product);
+                Snackbar.Add("Product created successfully!", Severity.Success);
+            }
+            
+            MudDialog?.Close(DialogResult.Ok(true));
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"Error: {ex.Message}", Severity.Error);
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private void Cancel() => MudDialog?.Close(DialogResult.Cancel());
+}

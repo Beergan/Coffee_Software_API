@@ -1,0 +1,13 @@
+/workspace/src/CoffeeShop.Shared/bin/Debug/net8.0/CoffeeShop.Shared.deps.json
+/workspace/src/CoffeeShop.Shared/bin/Debug/net8.0/CoffeeShop.Shared.dll
+/workspace/src/CoffeeShop.Shared/bin/Debug/net8.0/CoffeeShop.Shared.pdb
+/workspace/src/CoffeeShop.Shared/obj/Debug/net8.0/CoffeeShop.Shared.csproj.AssemblyReference.cache
+/workspace/src/CoffeeShop.Shared/obj/Debug/net8.0/CoffeeShop.Shared.GeneratedMSBuildEditorConfig.editorconfig
+/workspace/src/CoffeeShop.Shared/obj/Debug/net8.0/CoffeeShop.Shared.AssemblyInfoInputs.cache
+/workspace/src/CoffeeShop.Shared/obj/Debug/net8.0/CoffeeShop.Shared.AssemblyInfo.cs
+/workspace/src/CoffeeShop.Shared/obj/Debug/net8.0/CoffeeShop.Shared.csproj.CoreCompileInputs.cache
+/workspace/src/CoffeeShop.Shared/obj/Debug/net8.0/CoffeeShop.Shared.sourcelink.json
+/workspace/src/CoffeeShop.Shared/obj/Debug/net8.0/CoffeeShop.Shared.dll
+/workspace/src/CoffeeShop.Shared/obj/Debug/net8.0/refint/CoffeeShop.Shared.dll
+/workspace/src/CoffeeShop.Shared/obj/Debug/net8.0/CoffeeShop.Shared.pdb
+/workspace/src/CoffeeShop.Shared/obj/Debug/net8.0/ref/CoffeeShop.Shared.dll

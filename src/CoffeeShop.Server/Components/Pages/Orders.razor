@@ -1,0 +1,185 @@
+@page "/orders"
+@using CoffeeShop.Shared.Models
+@using CoffeeShop.Server.Services
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@inject IOrderService OrderService
+@inject ISnackbar Snackbar
+
+<PageTitle>Orders - Coffee Shop</PageTitle>
+
+<MudText Typo="Typo.h3" GutterBottom="true">
+    <MudIcon Icon="Icons.Material.Filled.ShoppingCart" Class="mr-3" />
+    Orders Management
+</MudText>
+
+<MudPaper Class="pa-4 mb-4">
+    <MudStack Row AlignItems="AlignItems.Center" Justify="Justify.SpaceBetween">
+        <MudTextField @bind-Value="searchText" 
+                     Placeholder="Search orders..." 
+                     Adornment="Adornment.Start" 
+                     AdornmentIcon="Icons.Material.Filled.Search"
+                     Variant="Variant.Outlined"
+                     Margin="Margin.Dense" />
+        
+        <MudSelect @bind-Value="selectedStatus" 
+                  Label="Status" 
+                  Variant="Variant.Outlined"
+                  Margin="Margin.Dense">
+            <MudSelectItem Value="(OrderStatus?)null">All Status</MudSelectItem>
+            @foreach (var status in Enum.GetValues<OrderStatus>())
+            {
+                <MudSelectItem Value="status">@status</MudSelectItem>
+            }
+        </MudSelect>
+
+        <MudButton Variant="Variant.Filled" 
+                  Color="Color.Primary" 
+                  StartIcon="Icons.Material.Filled.Add"
+                  Href="/orders/new">
+            New Order
+        </MudButton>
+    </MudStack>
+</MudPaper>
+
+@if (isLoading)
+{
+    <MudProgressLinear Indeterminate="true" />
+}
+else
+{
+    <MudPaper Elevation="2">
+        <MudTable Items="@FilteredOrders" Hover="true" Breakpoint="Breakpoint.Sm" Loading="@isLoading">
+            <HeaderContent>
+                <MudTh>Order #</MudTh>
+                <MudTh>Customer</MudTh>
+                <MudTh>Staff</MudTh>
+                <MudTh>Amount</MudTh>
+                <MudTh>Status</MudTh>
+                <MudTh>Created</MudTh>
+                <MudTh>Actions</MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd DataLabel="Order #">@context.OrderNumber</MudTd>
+                <MudTd DataLabel="Customer">@(context.CustomerName ?? "Walk-in")</MudTd>
+                <MudTd DataLabel="Staff">@context.User?.FullName</MudTd>
+                <MudTd DataLabel="Amount">$@context.TotalAmount.ToString("F2")</MudTd>
+                <MudTd DataLabel="Status">
+                    <MudChip T="string" Color="@GetStatusColor(context.Status)" Size="Size.Small">
+                        @context.Status
+                    </MudChip>
+                </MudTd>
+                <MudTd DataLabel="Created">@context.CreatedAt.ToString("MM/dd HH:mm")</MudTd>
+                <MudTd DataLabel="Actions">
+                    <MudButtonGroup Size="Size.Small" Variant="Variant.Outlined">
+                        @if (context.Status == OrderStatus.Pending)
+                        {
+                            <MudButton StartIcon="Icons.Material.Filled.PlayArrow"
+                                      Color="Color.Warning"
+                                      OnClick="() => UpdateOrderStatus(context, OrderStatus.Preparing)">
+                                Start
+                            </MudButton>
+                        }
+                        @if (context.Status == OrderStatus.Preparing)
+                        {
+                            <MudButton StartIcon="Icons.Material.Filled.Check"
+                                      Color="Color.Info"
+                                      OnClick="() => UpdateOrderStatus(context, OrderStatus.Ready)">
+                                Ready
+                            </MudButton>
+                        }
+                        @if (context.Status == OrderStatus.Ready)
+                        {
+                            <MudButton StartIcon="Icons.Material.Filled.CheckCircle"
+                                      Color="Color.Success"
+                                      OnClick="() => UpdateOrderStatus(context, OrderStatus.Completed)">
+                                Complete
+                            </MudButton>
+                        }
+                        @if (context.Status != OrderStatus.Completed && context.Status != OrderStatus.Cancelled)
+                        {
+                            <MudButton StartIcon="Icons.Material.Filled.Cancel"
+                                      Color="Color.Error"
+                                      OnClick="() => UpdateOrderStatus(context, OrderStatus.Cancelled)">
+                                Cancel
+                            </MudButton>
+                        }
+                    </MudButtonGroup>
+                </MudTd>
+            </RowTemplate>
+        </MudTable>
+    </MudPaper>
+
+    @if (!FilteredOrders.Any() && !isLoading)
+    {
+        <MudPaper Class="pa-8 text-center">
+            <MudIcon Icon="Icons.Material.Filled.SearchOff" Size="Size.Large" Color="Color.Default" />
+            <MudText Typo="Typo.h6" Class="mt-4">No orders found</MudText>
+            <MudText Typo="Typo.body1">Try adjusting your search criteria or create a new order</MudText>
+        </MudPaper>
+    }
+}
+
+@code {
+    private List<Order> orders = new();
+    private string searchText = "";
+    private OrderStatus? selectedStatus = null;
+    private bool isLoading = true;
+
+    private IEnumerable<Order> FilteredOrders => orders.Where(o =>
+        (string.IsNullOrEmpty(searchText) || o.OrderNumber.Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
+         (!string.IsNullOrEmpty(o.CustomerName) && o.CustomerName.Contains(searchText, StringComparison.OrdinalIgnoreCase))) &&
+        (selectedStatus == null || o.Status == selectedStatus));
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadOrders();
+    }
+
+    private async Task LoadOrders()
+    {
+        isLoading = true;
+        try
+        {
+            orders = await OrderService.GetAllOrdersAsync();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"Error loading orders: {ex.Message}", Severity.Error);
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task UpdateOrderStatus(Order order, OrderStatus newStatus)
+    {
+        try
+        {
+            await OrderService.UpdateOrderStatusAsync(order.Id, newStatus);
+            order.Status = newStatus;
+            if (newStatus == OrderStatus.Completed)
+            {
+                order.CompletedAt = DateTime.UtcNow;
+            }
+            
+            Snackbar.Add($"Order {order.OrderNumber} status updated to {newStatus}", Severity.Success);
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"Error updating order status: {ex.Message}", Severity.Error);
+        }
+    }
+
+    private Color GetStatusColor(OrderStatus status) => status switch
+    {
+        OrderStatus.Completed => Color.Success,
+        OrderStatus.Ready => Color.Info,
+        OrderStatus.Preparing => Color.Warning,
+        OrderStatus.Pending => Color.Default,
+        OrderStatus.Cancelled => Color.Error,
+        _ => Color.Default
+    };
+}
