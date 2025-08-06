@@ -1,0 +1,108 @@
+@page "/Account/Login"
+@using Microsoft.AspNetCore.Identity
+@using CoffeeShop.Shared.Models
+@using CoffeeShop.Shared.DTOs
+@using MudBlazor
+@inject UserManager<User> UserManager
+@inject SignInManager<User> SignInManager
+@inject NavigationManager Navigation
+@inject ISnackbar Snackbar
+
+<PageTitle>Login - Coffee Shop</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Small">
+    <MudPaper Elevation="4" Class="pa-8 mt-8">
+        <MudText Typo="Typo.h4" Align="Align.Center" GutterBottom="true">
+            <MudIcon Icon="Icons.Material.Filled.LocalCafe" Class="mr-2" />
+            Coffee Shop Login
+        </MudText>
+        
+        <EditForm Model="@model" OnValidSubmit="OnValidSubmit">
+            <DataAnnotationsValidator />
+            
+            <MudTextField Label="Email"
+                         @bind-Value="model.Email"
+                         For="@(() => model.Email)"
+                         Variant="Variant.Outlined"
+                         InputType="InputType.Email"
+                         Adornment="Adornment.Start"
+                         AdornmentIcon="Icons.Material.Filled.Email"
+                         Class="mb-4" />
+            
+            <MudTextField Label="Password"
+                         @bind-Value="model.Password"
+                         For="@(() => model.Password)"
+                         Variant="Variant.Outlined"
+                         InputType="InputType.Password"
+                         Adornment="Adornment.Start"
+                         AdornmentIcon="Icons.Material.Filled.Lock"
+                         Class="mb-4" />
+            
+            <MudCheckBox @bind-Value="model.RememberMe"
+                        Label="Remember me"
+                        Color="Color.Primary"
+                        Class="mb-4" />
+            
+            <MudButton ButtonType="ButtonType.Submit"
+                      Variant="Variant.Filled"
+                      Color="Color.Primary"
+                      StartIcon="Icons.Material.Filled.Login"
+                      FullWidth="true"
+                      Size="Size.Large"
+                      Disabled="@isLoading">
+                @if (isLoading)
+                {
+                    <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+                    <MudText Class="ms-2">Signing in...</MudText>
+                }
+                else
+                {
+                    <text>Sign In</text>
+                }
+            </MudButton>
+        </EditForm>
+    </MudPaper>
+</MudContainer>
+
+@code {
+    private LoginRequest model = new();
+    private bool isLoading = false;
+
+    private async Task OnValidSubmit()
+    {
+        isLoading = true;
+        StateHasChanged();
+
+        try
+        {
+            var result = await SignInManager.PasswordSignInAsync(
+                model.Email, 
+                model.Password, 
+                model.RememberMe, 
+                lockoutOnFailure: true);
+
+            if (result.Succeeded)
+            {
+                Snackbar.Add("Login successful!", Severity.Success);
+                Navigation.NavigateTo("/");
+            }
+            else if (result.IsLockedOut)
+            {
+                Snackbar.Add("Account locked. Please try again later.", Severity.Error);
+            }
+            else
+            {
+                Snackbar.Add("Invalid login attempt.", Severity.Error);
+            }
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"An error occurred: {ex.Message}", Severity.Error);
+        }
+        finally
+        {
+            isLoading = false;
+            StateHasChanged();
+        }
+    }
+}
