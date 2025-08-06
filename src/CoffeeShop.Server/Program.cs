@@ -17,9 +17,21 @@ builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
 
-// Add Entity Framework
+// Add Entity Framework with SQL Server/SQLite
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+{
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    if (connectionString!.Contains("Initial Catalog") || connectionString.Contains("Database=") || connectionString.Contains("SQLEXPRESS"))
+    {
+        // SQL Server
+        options.UseSqlServer(connectionString);
+    }
+    else
+    {
+        // SQLite (default)
+        options.UseSqlite(connectionString);
+    }
+});
 
 // Add Identity
 builder.Services.AddIdentity<User, IdentityRole>(options =>
